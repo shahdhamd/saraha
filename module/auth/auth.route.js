@@ -1,0 +1,11 @@
+const router=require("express").Router()
+const { validation } = require("../../middleware/validation.js")
+const authController=require('../auth/controller/auth.controller.js')
+const authValidation=require('./auth.validation.js')
+router.post('/signup',validation(authValidation.signup),authController.signup)
+router.get('/confirmEmail/:token',authController.confirmEmail)
+router.post('/signin',validation(authValidation.signin),authController.signin)
+router.get('/sendCode',authController.sendCode)
+router.get('/rftoken/:token',authController.refreshtoken)
+router.patch('/forgetpassward',authController.forgetPassward)
+module.exports=router;
